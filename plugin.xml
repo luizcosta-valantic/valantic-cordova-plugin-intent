@@ -47,6 +47,12 @@
 	        </intent-filter>
 	    </receiver>
 	</config-file>
+	<config-file target="AndroidManifest.xml" parent="/manifest/application/activity" mode="merge">
+	    <intent-filter>
+	        <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
+	        <category android:name="android.intent.category.DEFAULT" />
+	    </intent-filter>
+	</config-file>
         <source-file src="src/android/IntentShimCustom.java" target-dir="src/com/darryncampbell/plugin/intent" />
         <source-file src="src/android/CordovaPluginIntentFileProvider.java" target-dir="src/com/darryncampbell/plugin/intent" />
 		<resource-file src="src/android/res/xml/provider_paths.xml" target="res/xml/provider_paths.xml"/>
