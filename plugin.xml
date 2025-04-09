@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="com-darryncampbell-cordova-plugin-intent" version="2.2.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intent Shim</name>
-    <js-module name="IntentShim" src="www/IntentShim.js">
-        <clobbers target="intentShim" />
+    <js-module name="IntentShimCustom" src="www/IntentShim.js">
+    	<clobbers target="intentShimCustom" />
     </js-module>
     
     <hook type="after_prepare" src="hooks/after_prepare.js" />
@@ -10,10 +10,10 @@
 	<!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="IntentShim" >
-                <param name="android-package" value="com.darryncampbell.cordova.plugin.intent.IntentShim"/>
-                <param name="onload" value="true"/>
-            </feature>
+		<feature name="IntentShimCustom">
+	    		<param name="android-package" value="com.darryncampbell.cordova.plugin.intent.IntentShimCustom" />
+	    		<param name="onload" value="true" />
+		</feature>
         </config-file>
         <config-file target="AndroidManifest.xml" platform="android" parent="/manifest/application/activity" mode="merge">
             <intent-filter>
