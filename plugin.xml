@@ -59,7 +59,7 @@
 			    <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
 			</intent-filter>
 		</receiver>
-	</config-config>
+	</config-file>
 	<config-file target="AndroidManifest.xml"
 	             parent="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']"
 	             mode="merge">
