@@ -59,7 +59,7 @@ public class IntentShimCustom extends CordovaPlugin {
 
     private Intent deferredIntent = null;
 
-    public IntentShim() {
+    public IntentShimCustom() {
 
     }
 
