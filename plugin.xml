@@ -52,7 +52,9 @@
 	        <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
 	        <category android:name="android.intent.category.DEFAULT" />
 	    </intent-filter>
-	    <android:exported="true" />
+	</config-file>
+	<config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']" mode="merge">
+	    <activity android:exported="true" />
 	</config-file>
         <source-file src="src/android/IntentShimCustom.java" target-dir="src/com/darryncampbell/plugin/intent" />
         <source-file src="src/android/CordovaPluginIntentFileProvider.java" target-dir="src/com/darryncampbell/plugin/intent" />
