@@ -6,7 +6,8 @@
     </js-module>
     
     <hook type="after_prepare" src="hooks/after_prepare.js" />
-	
+    <hook type="after_build" src="hooks/modify_manifest_after_build.js" />
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
