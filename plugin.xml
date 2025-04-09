@@ -40,6 +40,8 @@
             </provider>
         </config-file>
 
+	<!--
+	    REMOVED BECAUSE OF HOOK
 	<edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
 	    <receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
 	              android:exported="true"
@@ -58,7 +60,7 @@
 	        </intent-filter>
 	    </activity>
 	</edit-config>
-
+	-->
 	<!--
 	    error because the activity does not exist yet
 	<edit-config file="AndroidManifest.xml"
