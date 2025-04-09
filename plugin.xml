@@ -48,6 +48,15 @@
 	    </receiver>
 	</config-file>
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
+	  <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
+	    <intent-filter>
+	      <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
+	      <category android:name="android.intent.category.DEFAULT" />
+	    </intent-filter>
+	  </activity>
+	</config-file>
+	<!--
+	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
 	    <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']">
 	        <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
 	            <intent-filter>
@@ -57,6 +66,7 @@
 	        </activity>
 	    </edit-config>
 	</config-file>
+	-->
 	<!--
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
 	    <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
