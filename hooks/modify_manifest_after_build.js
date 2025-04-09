@@ -81,7 +81,8 @@ module.exports = function (context) {
         $: {
           'android:name': receiverName,
           'android:exported': 'true',
-          'android:enabled': 'true'
+          'android:enabled': 'true',
+          'android:permission': 'outsystems.dohle.FILO.ALLOW_FILE_REQUEST'
         },
         'intent-filter': [{
           action: [{ $: { 'android:name': 'outsystems.dohle.FILO.GET_DB_FILE' } }]
