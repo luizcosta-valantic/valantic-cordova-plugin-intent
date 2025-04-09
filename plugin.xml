@@ -50,7 +50,7 @@
 	</config-file>
 	-->
 	<config-file target="AndroidManifest.xml"
-	             parent="application"
+	             parent="/manifest/application"
 	             mode="merge">
 		<receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
 			  android:exported="true"
