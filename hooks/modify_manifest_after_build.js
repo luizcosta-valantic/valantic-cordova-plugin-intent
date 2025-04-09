@@ -42,7 +42,13 @@ module.exports = function (context) {
     console.log("app.activity", app.activity);
     
     // ✅ Ensure MainActivity is exported
-    const mainActivities = app.activity.filter(a => a.$['android:name'] === 'app.outsystems.dohledev.RafaelSandbox.MainActivity');
+    //const mainActivities = app.activity.filter(a => a.$['android:name'] === 'app.outsystems.dohledev.RafaelSandbox.MainActivity');
+    const mainActivities = app.activity.filter(a => {
+      const name = a.$['android:name'];
+        return name === 'MainActivity' || name === 'app.outsystems.dohledev.RafaelSandbox.MainActivity';
+      }
+    );
+
     console.log("mainActivities", mainActivities);
     if (mainActivities.length > 0) {
       const mainActivity = mainActivities[0];
