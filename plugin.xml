@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="com-darryncampbell-cordova-plugin-intentCustom" version="2.2.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intent Shim</name>
-    <js-module name="IntentShimCustom" src="www/IntentShim.js">
+    <js-module name="IntentShimCustom" src="www/IntentShimCustom.js">
     	<clobbers target="intentShimCustom" />
     </js-module>
     
