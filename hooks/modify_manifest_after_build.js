@@ -4,6 +4,16 @@ const xml2js = require('xml2js');
 
 module.exports = function (context) {
   const manifestPath = path.join(
+  context.opts.projectRoot,
+  'platforms',
+  'android',
+  'app',
+  'src',
+  'main',
+  'AndroidManifest.xml'
+);
+  /*
+  const manifestPath = path.join(
     context.opts.projectRoot,
     'platforms',
     'android',
@@ -12,6 +22,7 @@ module.exports = function (context) {
     'main',
     'AndroidManifest.xml'
   );
+  */
 
   if (!fs.existsSync(manifestPath)) {
     console.error("AndroidManifest.xml not found at expected location:", manifestPath);
