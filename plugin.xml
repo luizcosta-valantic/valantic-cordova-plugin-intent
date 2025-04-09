@@ -49,6 +49,28 @@
 	    </receiver>
 	</config-file>
 	-->
+
+	<edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+	    <receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
+	              android:exported="true"
+	              android:enabled="true">
+	        <intent-filter>
+	            <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
+	        </intent-filter>
+	    </receiver>
+	</edit-config>
+
+	<edit-config file="AndroidManifest.xml"
+		     target="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']"
+		     mode="merge">
+	    <intent-filter>
+		<action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
+		<category android:name="android.intent.category.DEFAULT" />
+	    </intent-filter>
+	</edit-config>
+
+	<!--    
+	    LAST ONES
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
 	    <receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
 	              android:exported="true"
@@ -67,7 +89,7 @@
 	        <category android:name="android.intent.category.DEFAULT" />
 	    </intent-filter>
 	</config-file>
-
+	-->
 	<!--
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
 	    <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
