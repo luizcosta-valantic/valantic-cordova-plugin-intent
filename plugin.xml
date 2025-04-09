@@ -38,6 +38,7 @@
                     android:resource="@xml/provider_paths"/>
             </provider>
         </config-file>
+	<!--
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
 	    <receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
 	              android:exported="true"
@@ -47,26 +48,28 @@
 	        </intent-filter>
 	    </receiver>
 	</config-file>
-	<config-file parent="application" target="AndroidManifest.xml" mode="merge">
-	  <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity">
-	    <intent-filter>
-	      <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
-	      <category android:name="android.intent.category.DEFAULT" />
-	    </intent-filter>
-	  </activity>
-	</config-file>
-	<!--
-	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
-	    <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']">
-	        <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
-	            <intent-filter>
-	                <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
-	                <category android:name="android.intent.category.DEFAULT" />
-	            </intent-filter>
-	        </activity>
-	    </edit-config>
-	</config-file>
 	-->
+	<edit-config file="AndroidManifest.xml"
+		     target="/manifest/application"
+		     mode="merge">
+		<receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
+		      android:exported="true"
+		      android:enabled="true">
+		<intent-filter>
+		    <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
+		</intent-filter>
+		</receiver>
+	</edit-config>
+	<config-file target="AndroidManifest.xml"
+	             parent="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']"
+	             mode="merge">
+	    <activity android:exported="true">
+	        <intent-filter>
+	            <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
+	            <category android:name="android.intent.category.DEFAULT" />
+	        </intent-filter>
+	    </activity>
+	</config-file>
 	<!--
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
 	    <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
