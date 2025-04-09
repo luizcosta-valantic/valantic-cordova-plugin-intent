@@ -48,7 +48,7 @@
 	    </receiver>
 	</config-file>
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
-	    <activity android:name=".MainActivity" android:exported="true">
+	    <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
 	        <intent-filter>
 	            <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
 	            <category android:name="android.intent.category.DEFAULT" />
