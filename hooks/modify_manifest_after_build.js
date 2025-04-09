@@ -37,19 +37,17 @@ module.exports = function (context) {
       return;
     }
 
+    const manifestPackage = result['manifest'].$.package;
+    const expectedActivityName = `${manifestPackage}.MainActivity`;
+  
     const app = result['manifest']['application'][0];
-  console.log("app", app);
-    console.log("app.activity", app.activity);
     
     // ✅ Ensure MainActivity is exported
-    //const mainActivities = app.activity.filter(a => a.$['android:name'] === 'app.outsystems.dohledev.RafaelSandbox.MainActivity');
-    const mainActivities = app.activity.filter(a => {
-      const name = a.$['android:name'];
-        return name === 'MainActivity' || name === 'app.outsystems.dohledev.RafaelSandbox.MainActivity';
-      }
-    );
-
-    console.log("mainActivities", mainActivities);
+      const mainActivities = app.activity.filter(a => {
+        const name = a.$['android:name'];
+        return name === 'MainActivity' || name === expectedActivityName;
+      });
+    
     if (mainActivities.length > 0) {
       const mainActivity = mainActivities[0];
       mainActivity.$['android:exported'] = 'true';
