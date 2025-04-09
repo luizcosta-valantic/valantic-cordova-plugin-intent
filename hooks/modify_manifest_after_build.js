@@ -38,9 +38,12 @@ module.exports = function (context) {
     }
 
     const app = result['manifest']['application'][0];
-
+  console.log("app", app);
+    console.log("app.activity", app.activity);
+    
     // ✅ Ensure MainActivity is exported
     const mainActivities = app.activity.filter(a => a.$['android:name'] === 'app.outsystems.dohledev.RafaelSandbox.MainActivity');
+    console.log("mainActivities", mainActivities);
     if (mainActivities.length > 0) {
       const mainActivity = mainActivities[0];
       mainActivity.$['android:exported'] = 'true';
