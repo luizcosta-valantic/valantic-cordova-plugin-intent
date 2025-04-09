@@ -7,7 +7,7 @@
     
     <hook type="after_prepare" src="hooks/after_prepare.js" />
 	
-	<!-- android -->
+    <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
 		<feature name="IntentShimCustom">
@@ -47,7 +47,7 @@
 	        </intent-filter>
 	    </receiver>
 	</config-file>
-	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
+	<config-file parent="application" target="AndroidManifest.xml">
 	  <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
 	    <intent-filter>
 	      <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
