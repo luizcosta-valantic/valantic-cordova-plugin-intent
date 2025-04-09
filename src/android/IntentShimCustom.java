@@ -49,7 +49,7 @@ import java.util.Map;
 import static android.os.Environment.getExternalStorageDirectory;
 import static android.os.Environment.getExternalStorageState;
 
-public class IntentShim extends CordovaPlugin {
+public class IntentShimCustom extends CordovaPlugin {
 
     private final Map<BroadcastReceiver, CallbackContext> receiverCallbacks = new HashMap<>();
 
