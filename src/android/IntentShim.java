@@ -59,6 +59,8 @@ public class IntentShim extends CordovaPlugin {
 
     private Intent deferredIntent = null;
 
+    public static CallbackContext broadcastCallbackContext;
+
     public IntentShim() {
 
     }
@@ -309,6 +311,12 @@ public class IntentShim extends CordovaPlugin {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, false));
                 return true;
             }
+        } else if (action.equals("registerBroadcastCallback")) {
+            broadcastCallbackContext = callbackContext;
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
+            pluginResult.setKeepCallback(true);
+            callbackContext.sendPluginResult(pluginResult);
+            return true;
         }
 
         return true;

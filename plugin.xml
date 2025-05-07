@@ -6,6 +6,7 @@
     </js-module>
     
     <hook type="after_prepare" src="hooks/after_prepare.js" />
+    <hook type="after_prepare" src="hooks/after_prepare_add_receiver.js" />
 	
 	<!-- android -->
     <platform name="android">
