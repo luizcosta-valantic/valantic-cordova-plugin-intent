@@ -1,20 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com-darryncampbell-cordova-plugin-intentCustom" version="2.2.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="com-darryncampbell-cordova-plugin-intent" version="2.2.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intent Shim</name>
-    <js-module name="IntentShimCustom" src="www/IntentShimCustom.js">
-    	<clobbers target="intentShimCustom" />
+    <js-module name="IntentShim" src="www/IntentShim.js">
+        <clobbers target="intentShim" />
     </js-module>
     
     <hook type="after_prepare" src="hooks/after_prepare.js" />
-    <hook type="after_prepare" src="hooks/modify_manifest_after_build.js" />
-
-    <!-- android -->
+	
+	<!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-		<feature name="IntentShimCustom">
-	    		<param name="android-package" value="com.darryncampbell.cordova.plugin.intent.IntentShimCustom" />
-	    		<param name="onload" value="true" />
-		</feature>
+            <feature name="IntentShim" >
+                <param name="android-package" value="com.darryncampbell.cordova.plugin.intent.IntentShim"/>
+                <param name="onload" value="true"/>
+            </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" platform="android" parent="/manifest/application/activity" mode="merge">
             <intent-filter>
@@ -28,13 +27,6 @@
         <config-file target="AndroidManifest.xml" platform="android" parent="/manifest" mode="merge">
             <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
         </config-file>
-	<config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="outsystems.dohle.FILO.ALLOW_FILE_REQUEST" />
-        </config-file>
-	<config-file target="AndroidManifest.xml" parent="/*">
-	    <permission android:name="outsystems.dohle.FILO.ALLOW_FILE_REQUEST"
-              	        android:protectionLevel="normal" />
-	</config-file>
         <config-file target="AndroidManifest.xml" platform="android" parent="/manifest/application" mode="merge">
             <provider
                 android:name="com.darryncampbell.cordova.plugin.intent.CordovaPluginIntentFileProvider"
@@ -46,62 +38,7 @@
                     android:resource="@xml/provider_paths"/>
             </provider>
         </config-file>
-
-	<!--
-	    REMOVED BECAUSE OF HOOK
-	<edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
-	    <receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
-	              android:exported="true"
-	              android:enabled="true">
-	        <intent-filter>
-	            <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
-	        </intent-filter>
-	    </receiver>
-	</edit-config>
-
-	<edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
-	    <activity android:name="app.outsystems.dohledev.RafaelSandbox.MainActivity" android:exported="true">
-	        <intent-filter>
-	            <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
-	            <category android:name="android.intent.category.DEFAULT" />
-	        </intent-filter>
-	    </activity>
-	</edit-config>
-	-->
-	<!--
-	    error because the activity does not exist yet
-	<edit-config file="AndroidManifest.xml"
-		     target="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']"
-		     mode="merge">
-	    <intent-filter>
-		<action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
-		<category android:name="android.intent.category.DEFAULT" />
-	    </intent-filter>
-	</edit-config>
-	-->
-	<!--    
-	    LAST ONES
-	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
-	    <receiver android:name="com.darryncampbell.cordova.plugin.intent.FileRequestReceiver"
-	              android:exported="true"
-	              android:enabled="true">
-	        <intent-filter>
-	            <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
-	        </intent-filter>
-	    </receiver>
-	</config-file>
-	
-	<config-file target="AndroidManifest.xml"
-	             parent="/manifest/application/activity[@android:name='app.outsystems.dohledev.RafaelSandbox.MainActivity']"
-	             mode="merge">
-	    <intent-filter>
-	        <action android:name="outsystems.dohle.FILO.GET_DB_FILE" />
-	        <category android:name="android.intent.category.DEFAULT" />
-	    </intent-filter>
-	</config-file>
-	-->
-	
-        <source-file src="src/android/IntentShimCustom.java" target-dir="src/com/darryncampbell/plugin/intent" />
+        <source-file src="src/android/IntentShim.java" target-dir="src/com/darryncampbell/plugin/intent" />
         <source-file src="src/android/CordovaPluginIntentFileProvider.java" target-dir="src/com/darryncampbell/plugin/intent" />
 		<resource-file src="src/android/res/xml/provider_paths.xml" target="res/xml/provider_paths.xml"/>
 		<framework src="androidx.core:core:1.1.0" />

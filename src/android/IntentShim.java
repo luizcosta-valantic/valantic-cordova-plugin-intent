@@ -49,7 +49,7 @@ import java.util.Map;
 import static android.os.Environment.getExternalStorageDirectory;
 import static android.os.Environment.getExternalStorageState;
 
-public class IntentShimCustom extends CordovaPlugin {
+public class IntentShim extends CordovaPlugin {
 
     private final Map<BroadcastReceiver, CallbackContext> receiverCallbacks = new HashMap<>();
 
@@ -59,7 +59,7 @@ public class IntentShimCustom extends CordovaPlugin {
 
     private Intent deferredIntent = null;
 
-    public IntentShimCustom() {
+    public IntentShim() {
 
     }
 
@@ -169,16 +169,7 @@ public class IntentShimCustom extends CordovaPlugin {
 
             BroadcastReceiver broadcastReceiver = newBroadcastReceiver();
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                this.cordova.getActivity().registerReceiver(
-                    broadcastReceiver,
-                    filter,
-                    Context.RECEIVER_EXPORTED
-                );
-            } else {
-                this.cordova.getActivity().registerReceiver(broadcastReceiver, filter);
-            }
-            
+            this.cordova.getActivity().registerReceiver(broadcastReceiver, filter);
             receiverCallbacks.put(broadcastReceiver, callbackContext);
 
             callbackContext.sendPluginResult(result);
