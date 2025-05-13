@@ -17,6 +17,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.getAction());
         Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.toString());
 
         if (IntentShim.broadcastCallbackContext != null && intent != null) {
