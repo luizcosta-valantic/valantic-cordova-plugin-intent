@@ -312,6 +312,7 @@ public class IntentShim extends CordovaPlugin {
                 return true;
             }
         } else if (action.equals("registerBroadcastCallback")) {
+            Log.d(LOG_TAG, "registerBroadcastCallback action");
             broadcastCallbackContext = callbackContext;
             PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
             pluginResult.setKeepCallback(true);
