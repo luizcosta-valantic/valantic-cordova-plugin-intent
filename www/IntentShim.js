@@ -89,7 +89,7 @@ IntentShim.prototype.packageExists = function (packageName, successCallback) {
     exec(successCallback, null, "IntentShim", "packageExists", [packageName]);
 };
 
-IntentShim.registerBroadcastCallback = function(successCallback, errorCallback) {
+IntentShim.prototype.registerBroadcastCallback = function(successCallback, errorCallback) {
     argscheck.checkArgs('ff', 'IntentShim.registerBroadcastCallback', arguments);
     cordova.exec(successCallback, errorCallback, 'IntentShim', 'registerBroadcastCallback', []);
 };
