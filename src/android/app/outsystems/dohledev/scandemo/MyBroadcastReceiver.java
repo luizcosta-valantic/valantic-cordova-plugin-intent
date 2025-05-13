@@ -23,7 +23,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         if (IntentShim.broadcastCallbackContext != null && intent != null) {
             try {
                 if (intent.getAction() != null &&
-                    (intent.getAction().equals("com.symbol.datawedge.api.RESULT_ACTION") || intent.getAction().equals("com.dohle.outsystems.SCAN_RESULT"))) {
+                    (intent.getAction().equals("com.symbol.datawedge.api.RESULT_ACTION") || intent.getAction().equals("com.zebra.cordovademo.ACTION"))) {
                     JSONObject intentJson = new JSONObject();
                     intentJson.put("action", intent.getAction());
 

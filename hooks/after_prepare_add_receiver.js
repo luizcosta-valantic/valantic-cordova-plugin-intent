@@ -10,7 +10,7 @@ module.exports = function (context) {
         <receiver android:exported="true" android:name=".MyBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
-                <action android:name="com.dohle.outsystems.SCAN_RESULT" />
+                <action android:name="com.zebra.cordovademo.ACTION" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
