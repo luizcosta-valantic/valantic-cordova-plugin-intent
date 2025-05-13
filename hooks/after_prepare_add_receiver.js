@@ -5,8 +5,9 @@ module.exports = function (context) {
     const manifestPath = path.join(context.opts.projectRoot, 'platforms', 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
     let manifest = fs.readFileSync(manifestPath, 'utf8');
 
+    // <receiver android:exported="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
     const receiverDeclaration = `
-        <receiver android:exported="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
+        <receiver android:exported="true" android:name=".MyBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
                 <action android:name="com.dohle.outsystems.SCAN_RESULT" />
