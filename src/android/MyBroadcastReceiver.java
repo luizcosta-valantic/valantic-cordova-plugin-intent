@@ -1,4 +1,4 @@
-package app.outsystems.dohledev.scandemo;
+package com.darryncampbell.cordova.plugin.intent;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
