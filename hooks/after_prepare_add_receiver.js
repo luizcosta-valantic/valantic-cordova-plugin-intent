@@ -7,7 +7,7 @@ module.exports = function (context) {
 
     //<receiver android:exported="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
     const receiverDeclaration = `
-        <receiver android:exported="true" android:name=".MyBroadcastReceiver">
+        <receiver android:exported="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
                 <action android:name="com.zebra.cordovademo.ACTION" />
