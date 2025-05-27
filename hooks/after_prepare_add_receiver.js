@@ -5,7 +5,6 @@ module.exports = function (context) {
     const manifestPath = path.join(context.opts.projectRoot, 'platforms', 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
     let manifest = fs.readFileSync(manifestPath, 'utf8');
 
-    //<receiver android:exported="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
     const receiverDeclaration = `
         <receiver android:exported="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
             <intent-filter>
