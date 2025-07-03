@@ -20,6 +20,11 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.getAction());
         Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.toString());
 
+        if (!isAppInForeground(context)) {
+            Log.d("MyBroadcastReceiver", "App in background. Ignoring intent.");
+            return;
+        }
+
         if (IntentShim.broadcastCallbackContext != null && intent != null) {
             try {
                 if (intent.getAction() != null &&
@@ -46,4 +51,31 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             }
         }
     }
+
+    private boolean isAppInForeground(Context context) {
+        android.app.ActivityManager activityManager = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        String packageName = context.getPackageName();
+    
+        if (activityManager != null) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                for (android.app.ActivityManager.AppTask task : activityManager.getAppTasks()) {
+                    if (task.getTaskInfo().topActivity != null &&
+                        task.getTaskInfo().topActivity.getPackageName().equals(packageName)) {
+                        return true;
+                    }
+                }
+            } else {
+                for (android.app.ActivityManager.RunningAppProcessInfo processInfo : activityManager.getRunningAppProcesses()) {
+                    if (processInfo.importance == android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND &&
+                        processInfo.processName.equals(packageName)) {
+                        return true;
+                    }
+                }
+            }
+        }
+    
+        return false;
+    }
+
+    
 }
