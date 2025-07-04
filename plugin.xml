@@ -16,7 +16,7 @@
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
           <application android:name="com.darryncampbell.cordova.plugin.intent.MyApplication" />
         </config-file>
         <!--
@@ -41,7 +41,7 @@
 
         <source-file src="src/android/MyApplication.java" target-dir="src/android/com/darryncampbell/cordova/plugin/intent" />
 
-        
+
 		<resource-file src="src/android/res/xml/provider_paths.xml" target="res/xml/provider_paths.xml"/>
 		<!-- -->
     </platform>
