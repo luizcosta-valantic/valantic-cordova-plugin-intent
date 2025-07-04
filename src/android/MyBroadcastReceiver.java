@@ -10,22 +10,18 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONObject;
 
 import com.darryncampbell.cordova.plugin.intent.IntentShim;
-import com.darryncampbell.cordova.plugin.intent.MyApplication;
+import com.darryncampbell.cordova.plugin.intent.AppStateUtils;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
     public static CallbackContext callbackContext;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (!MainActivity.isInForeground) {
-            Log.d("MyBroadcastReceiver", "App em background. Ignorando intent.");
-            return;
-        }
 
         Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.getAction());
         Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.toString());
 
-        if (!MyApplication.isAppInForeground()) {
+        if (!AppStateUtils.isAppInForeground(context)) {
             Log.d("MyBroadcastReceiver", "App in background. Ignoring intent.");
             return;
         }

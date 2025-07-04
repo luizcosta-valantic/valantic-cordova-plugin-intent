@@ -94,6 +94,14 @@ IntentShim.prototype.registerBroadcastCallback = function(successCallback, error
     cordova.exec(successCallback, errorCallback, 'IntentShim', 'registerBroadcastCallback', []);
 };
 
+
+IntentShim.prototype.isInForeground = function(successCallback, errorCallback) {
+    argscheck.checkArgs('ff', 'IntentShim.isInForeground', arguments);
+    cordova.exec(successCallback, errorCallback, 'IntentShim', 'isInForeground', []);
+};
+
+
+
 window.intentShim = new IntentShim();
 window.plugins = window.plugins || {};
 window.plugins.intentShim = window.intentShim;
