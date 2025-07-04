@@ -10,17 +10,22 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONObject;
 
 import com.darryncampbell.cordova.plugin.intent.IntentShim;
+import com.darryncampbell.cordova.plugin.intent.MainActivity;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
     public static CallbackContext callbackContext;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        if (!MainActivity.isInForeground) {
+            Log.d("MyBroadcastReceiver", "App em background. Ignorando intent.");
+            return;
+        }
 
         Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.getAction());
         Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.toString());
 
-        if (!isAppInForeground(context)) {
+        if (!MainActivity.isInForeground) {
             Log.d("MyBroadcastReceiver", "App in background. Ignoring intent.");
             return;
         }
@@ -50,31 +55,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
                 Log.e("MyBroadcastReceiver", "Error parsing intent", e);
             }
         }
-    }
-
-    private boolean isAppInForeground(Context context) {
-        android.app.ActivityManager activityManager = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        String packageName = context.getPackageName();
-    
-        if (activityManager != null) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                for (android.app.ActivityManager.AppTask task : activityManager.getAppTasks()) {
-                    if (task.getTaskInfo().topActivity != null &&
-                        task.getTaskInfo().topActivity.getPackageName().equals(packageName)) {
-                        return true;
-                    }
-                }
-            } else {
-                for (android.app.ActivityManager.RunningAppProcessInfo processInfo : activityManager.getRunningAppProcesses()) {
-                    if (processInfo.importance == android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND &&
-                        processInfo.processName.equals(packageName)) {
-                        return true;
-                    }
-                }
-            }
-        }
-    
-        return false;
     }
 
     
