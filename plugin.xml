@@ -12,7 +12,6 @@
 	
 	<!-- android -->
     <platform name="android">
-	<framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="IntentShim" >
                 <param name="android-package" value="com.darryncampbell.cordova.plugin.intent.IntentShim"/>
