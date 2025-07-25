@@ -48,7 +48,9 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
                     PluginResult result = new PluginResult(PluginResult.Status.OK, intentJson);
                     result.setKeepCallback(true);
+                    Log.d("MyBroadcastReceiver", "HUGOLUIZ START BROADCAST: " + intent.toString());
                     IntentShim.broadcastCallbackContext.sendPluginResult(result);
+                    Log.d("MyBroadcastReceiver", "HUGOLUIZ END BROADCAST: " + intent.toString());
                 }
             } catch (Exception e) {
                 Log.e("MyBroadcastReceiver", "Error parsing intent", e);
