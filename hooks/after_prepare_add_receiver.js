@@ -6,22 +6,22 @@ module.exports = function (context) {
     let manifest = fs.readFileSync(manifestPath, 'utf8');
 
     // 1️⃣ Receiver block
-    const receiverDeclaration = `
-        <receiver android:exported="true" android:enabled="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
-            <intent-filter>
-                <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
-                <action android:name="com.valantic.outsystems.SCAN_RESULT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
-    `;
+   // const receiverDeclaration = `
+    //    <receiver android:exported="true" android:enabled="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
+     //       <intent-filter>
+      //          <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
+       //         <action android:name="com.valantic.outsystems.SCAN_RESULT" />
+        //        <category android:name="android.intent.category.DEFAULT" />
+         //   </intent-filter>
+       // </receiver>
+    //`;
 
-    if (!manifest.includes("MyBroadcastReceiver")) {
-        manifest = manifest.replace(/<\/application>/, receiverDeclaration + "\n</application>");
-        console.log('✅ MyBroadcastReceiver added to AndroidManifest.xml');
-    } else {
-        console.log('ℹ️ MyBroadcastReceiver already exists in AndroidManifest.xml');
-    }
+    //if (!manifest.includes("MyBroadcastReceiver")) {
+     //   manifest = manifest.replace(/<\/application>/, receiverDeclaration + "\n</application>");
+      //  console.log('✅ MyBroadcastReceiver added to AndroidManifest.xml');
+    //} else {
+     //   console.log('ℹ️ MyBroadcastReceiver already exists in AndroidManifest.xml');
+    //}
 
     // 2️⃣ Provider block
     const providerDeclaration = `
