@@ -22,6 +22,15 @@ module.exports = function (context) {
     } else {
         console.log('ℹ️ MyBroadcastReceiver already exists in AndroidManifest.xml');
     }
+
+    // 1️⃣ Inject <uses-sdk> after <manifest> if not already present
+    const sdkBlock = `<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19" />`;
+    if (!manifest.includes('<uses-sdk')) {
+        manifest = manifest.replace(/<manifest[^>]*>/, match => `${match}\n    ${sdkBlock}`);
+        console.log('✅ Injected <uses-sdk> with targetSdkVersion 19 and minSdkVersion 8');
+    } else {
+        console.log('ℹ️ <uses-sdk> already present, skipping SDK injection');
+    }
     
     // Queries block
     const queryBlock = `
