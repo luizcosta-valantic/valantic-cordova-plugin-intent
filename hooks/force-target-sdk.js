@@ -6,11 +6,14 @@ module.exports = function (context) {
     const gradlePath = path.join(context.opts.projectRoot, 'platforms', 'android', 'app', 'build.gradle');
     if (fs.existsSync(gradlePath)) {
         let gradleContent = fs.readFileSync(gradlePath, 'utf8');
+
         gradleContent = gradleContent
+            .replace(/minSdkVersion\s+\d+/g, 'minSdkVersion 8')
             .replace(/targetSdkVersion\s+\d+/g, 'targetSdkVersion 19')
-            .replace(/minSdkVersion\s+\d+/g, 'minSdkVersion 8');
+            .replace(/compileSdkVersion\s+\d+/g, 'compileSdkVersion 19');
+
         fs.writeFileSync(gradlePath, gradleContent, 'utf8');
-        console.log('✅ Patched build.gradle: targetSdkVersion=19, minSdkVersion=8');
+        console.log('✅ Patched build.gradle: compileSdkVersion=19, targetSdkVersion=19, minSdkVersion=8');
     } else {
         console.warn('⚠️ build.gradle not found, cannot update SDK versions there.');
     }
