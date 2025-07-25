@@ -57,7 +57,7 @@ public class IntentShim extends CordovaPlugin {
 
     private final Map<BroadcastReceiver, CallbackContext> receiverCallbacks = new HashMap<>();
 
-    private static final String LOG_TAG = "Cordova Intents Shim";
+    private static final String LOG_TAG = "HUGOLUIZ Cordova Intents Shim";
     private CallbackContext onNewIntentCallbackContext = null;
     private CallbackContext onActivityResultCallbackContext = null;
 
@@ -79,17 +79,20 @@ public class IntentShim extends CordovaPlugin {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
                 return false;
             }
-
+            
             JSONObject obj = args.getJSONObject(0);
             Intent intent = populateIntent(obj, callbackContext);
             int requestCode = obj.has("requestCode") ? obj.getInt("requestCode") : 1;
-
+            
             boolean bExpectResult = false;
             if (action.equals("startActivityForResult"))
             {
                 bExpectResult = true;
                 this.onActivityResultCallbackContext = callbackContext;
             }
+
+            Log.d(LOG_TAG, "Intent: " + intent);
+            
             startActivity(intent, bExpectResult, requestCode, callbackContext);
 
             return true;
@@ -105,7 +108,9 @@ public class IntentShim extends CordovaPlugin {
             // Parse the arguments
             JSONObject obj = args.getJSONObject(0);
             Intent intent = populateIntent(obj, callbackContext);
-
+            
+            Log.d(LOG_TAG, "Intent: " + intent);
+            
             sendBroadcast(intent);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
             return true;
@@ -118,6 +123,9 @@ public class IntentShim extends CordovaPlugin {
             }
             JSONObject obj = args.getJSONObject(0);
             Intent intent = populateIntent(obj, callbackContext);
+
+            Log.d(LOG_TAG, "Intent: " + intent);
+            
             startService(intent);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
             return true;
@@ -172,7 +180,7 @@ public class IntentShim extends CordovaPlugin {
                     filter.addDataScheme(filterDataSchemes.getString(i));
                 }
             }
-
+            
             BroadcastReceiver broadcastReceiver = newBroadcastReceiver();
 
             this.cordova.getActivity().registerReceiver(broadcastReceiver, filter);
@@ -214,7 +222,7 @@ public class IntentShim extends CordovaPlugin {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
                 return false;
             }
-
+            
             this.onActivityResultCallbackContext = callbackContext;
 
             PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
@@ -239,7 +247,7 @@ public class IntentShim extends CordovaPlugin {
             else {
                 intent = cordova.getActivity().getIntent();
             }
-
+            Log.d(LOG_TAG, "Intent: " + intent);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, getIntentJson(intent)));
             return true;
         }
@@ -278,6 +286,8 @@ public class IntentShim extends CordovaPlugin {
                 }
             }
 
+            Log.d(LOG_TAG, "result: " + result);
+            
             //set result
             cordova.getActivity().setResult(Activity.RESULT_OK, result);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
@@ -327,6 +337,7 @@ public class IntentShim extends CordovaPlugin {
         else if (action.equals("isInForeground"))
         {
             boolean isForeground = AppStateUtils.isAppInForeground(cordova.getContext());
+            Log.d(LOG_TAG, "Entrou Foregroud");
             callbackContext.success(isForeground ? 1 : 0);
             return true;
         }
@@ -472,6 +483,7 @@ public class IntentShim extends CordovaPlugin {
     }
 
     private void sendBroadcast(Intent intent) {
+        Log.d(LOG_TAG,  "Entrou sendBroadcast");
         this.cordova.getActivity().sendBroadcast(intent);
     }
 
