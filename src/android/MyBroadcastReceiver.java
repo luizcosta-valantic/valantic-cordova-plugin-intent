@@ -26,8 +26,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         //    return;
         //}
 
-        Log.d("AppStateUtils", "HUGOLUIZ Importance: " + importance);
-        Log.d("AppStateUtils", "HUGOLUIZ Top package: " + topActivity.getPackageName());
+        //Log.d("AppStateUtils", "HUGOLUIZ Importance: " + importance);
+        //Log.d("AppStateUtils", "HUGOLUIZ Top package: " + topActivity.getPackageName());
 
         if (IntentShim.broadcastCallbackContext != null && intent != null) {
             try {
