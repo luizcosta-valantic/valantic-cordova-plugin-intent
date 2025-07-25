@@ -18,13 +18,16 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.getAction());
-        Log.d("MyBroadcastReceiver", "Received broadcast: " + intent.toString());
+        Log.d("MyBroadcastReceiver", "HUGOLUIZ Received broadcast: " + intent.getAction());
+        Log.d("MyBroadcastReceiver", "HUGOLUIZ Received broadcast: " + intent.toString());
 
-        if (!AppStateUtils.isAppInForeground(context)) {
-            Log.d("MyBroadcastReceiver", "App in background. Ignoring intent.");
-            return;
-        }
+        //if (!AppStateUtils.isAppInForeground(context)) {
+        //    Log.d("MyBroadcastReceiver", "App in background. Ignoring intent.");
+        //    return;
+        //}
+
+        Log.d("AppStateUtils", "HUGOLUIZ Importance: " + importance);
+        Log.d("AppStateUtils", "HUGOLUIZ Top package: " + topActivity.getPackageName());
 
         if (IntentShim.broadcastCallbackContext != null && intent != null) {
             try {
