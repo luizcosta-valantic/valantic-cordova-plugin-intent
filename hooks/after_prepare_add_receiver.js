@@ -6,22 +6,44 @@ module.exports = function (context) {
     let manifest = fs.readFileSync(manifestPath, 'utf8');
 
     // 1️⃣ Receiver block
-   // const receiverDeclaration = `
-    //    <receiver android:exported="true" android:enabled="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
-     //       <intent-filter>
-      //          <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
-       //         <action android:name="com.valantic.outsystems.SCAN_RESULT" />
-        //        <category android:name="android.intent.category.DEFAULT" />
-         //   </intent-filter>
-       // </receiver>
-    //`;
+    const receiverDeclaration = `
+        <receiver android:exported="true" android:enabled="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
+                <action android:name="com.valantic.outsystems.SCAN_RESULT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+    `;
 
-    //if (!manifest.includes("MyBroadcastReceiver")) {
-     //   manifest = manifest.replace(/<\/application>/, receiverDeclaration + "\n</application>");
-      //  console.log('✅ MyBroadcastReceiver added to AndroidManifest.xml');
-    //} else {
-     //   console.log('ℹ️ MyBroadcastReceiver already exists in AndroidManifest.xml');
-    //}
+    if (!manifest.includes("MyBroadcastReceiver")) {
+        manifest = manifest.replace(/<\/application>/, receiverDeclaration + "\n</application>");
+        console.log('✅ MyBroadcastReceiver added to AndroidManifest.xml');
+    } else {
+        console.log('ℹ️ MyBroadcastReceiver already exists in AndroidManifest.xml');
+    }
+    
+    // Queries block
+    const queryBlock = `
+    <intent>
+        <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
+        <data android:scheme="*"/>
+    </intent>
+    <intent>
+        <action android:name="com.valantic.outsystems.SCAN_RESULT" />
+        <data android:scheme="*"/>
+    </intent>
+    `;
+
+    if (manifest.includes('<queries>')) {
+        // Add intent block just before </queries>
+        manifest = manifest.replace('</queries>', queryBlock + '\n</queries>');
+        console.log("🔍 Custom queries added inside <queries>.");
+    } else {
+        // No <queries> block found, create one before </manifest>
+        manifest = manifest.replace('</manifest>', `<queries>${queryBlock}\n</queries>\n</manifest>`);
+        console.log("📁 Created <queries> block and added custom intent queries.");
+    }
 
     // 2️⃣ Provider block
     const providerDeclaration = `
