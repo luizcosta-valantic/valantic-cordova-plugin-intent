@@ -5,7 +5,7 @@
         <clobbers target="intentShim" />
     </js-module>
 
-    <hook type="after_prepare" src="hooks/after_prepare/force-target-sdk.js" />
+    <hook type="after_prepare" src="hooks/force-target-sdk.js" />
     <hook type="after_prepare" src="hooks/after_prepare.js" />
     <hook type="after_prepare" src="hooks/after_prepare_add_receiver.js" />
 	
