@@ -673,16 +673,20 @@ public class IntentShim extends CordovaPlugin {
     }
 
     private BroadcastReceiver newBroadcastReceiver() {
+        Log.d(LOG_TAG, "HUGOLUIZ start NEWBROADCAST:");
         return new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
+                Log.d(LOG_TAG, "HUGOLUIZ NEWBROADCAST: " + action);
                 CallbackContext onBroadcastCallbackContext = receiverCallbacks.get(this);
                 if (onBroadcastCallbackContext != null)
                 {
+                    Log.d(LOG_TAG, "HUGOLUIZ onBroadcastCallbackContext: " + action);
                     PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
                     result.setKeepCallback(true);
                     onBroadcastCallbackContext.sendPluginResult(result);
+                    Log.d(LOG_TAG, "HUGOLUIZ onBroadcastCallbackContext sendPluginResult: " + action);
                 }
             }
         };
