@@ -9,12 +9,10 @@
     <hook type="after_prepare" src="hooks/after_prepare.js" />
     <hook type="after_prepare" src="hooks/after_prepare_add_receiver.js" />
 
-	<preference name="android-minSdkVersion" value="8" />
-	<preference name="android-targetSdkVersion" value="19" />
 	
 	<!-- android -->
     <platform name="android">
-	<framework sdk="19" />
+	<framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="IntentShim" >
                 <param name="android-package" value="com.darryncampbell.cordova.plugin.intent.IntentShim"/>
