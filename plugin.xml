@@ -16,11 +16,6 @@
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
-    	<config-file target="AndroidManifest.xml" parent="manifest">
-            <queries>
-                <package android:name="com.symbol.datawedge" />
-            </queries>
-        </config-file>
 	    
         <!--
         <config-file target="AndroidManifest.xml" platform="android" parent="/manifest/application" mode="merge">
