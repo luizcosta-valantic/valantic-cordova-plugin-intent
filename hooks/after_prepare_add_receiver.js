@@ -8,8 +8,11 @@ module.exports = function (context) {
     // 1️⃣ Receiver block
     const receiverDeclaration = `
         <receiver android:exported="true" android:enabled="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
-            <intent-filter>
+             <intent-filter>
                 <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="com.valantic.outsystems.SCAN_RESULT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
