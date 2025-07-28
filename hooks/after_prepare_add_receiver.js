@@ -46,7 +46,7 @@ module.exports = function (context) {
         <data android:scheme="*"/>
     </intent>
     `;
-
+/*
     if (manifest.includes('<queries>')) {
         // Add intent block just before </queries>
         manifest = manifest.replace('</queries>', queryBlock + '\n</queries>');
@@ -55,7 +55,7 @@ module.exports = function (context) {
         // No <queries> block found, create one before </manifest>
         manifest = manifest.replace('</manifest>', `<queries>${queryBlock}\n</queries>\n</manifest>`);
         console.log("📁 Created <queries> block and added custom intent queries.");
-    }
+    }*/
 
     // 2️⃣ Provider block
     const providerDeclaration = `
