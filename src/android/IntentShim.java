@@ -49,10 +49,6 @@ import java.util.Map;
 import static android.os.Environment.getExternalStorageDirectory;
 import static android.os.Environment.getExternalStorageState;
 
-
-import com.darryncampbell.cordova.plugin.intent.AppStateUtils;
-
-
 public class IntentShim extends CordovaPlugin {
 
     private final Map<BroadcastReceiver, CallbackContext> receiverCallbacks = new HashMap<>();
@@ -331,14 +327,6 @@ public class IntentShim extends CordovaPlugin {
             PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
-            return true;
-        }
-
-        else if (action.equals("isInForeground"))
-        {
-            boolean isForeground = AppStateUtils.isAppInForeground(cordova.getContext());
-            Log.d(LOG_TAG, "Entrou Foregroud");
-            callbackContext.success(isForeground ? 1 : 0);
             return true;
         }
 
