@@ -10,7 +10,6 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONObject;
 
 import com.darryncampbell.cordova.plugin.intent.IntentShim;
-import com.darryncampbell.cordova.plugin.intent.AppStateUtils;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
     public static CallbackContext callbackContext;
@@ -20,14 +19,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
         Log.d("MyBroadcastReceiver", "HUGOLUIZ Received broadcast: " + intent.getAction());
         Log.d("MyBroadcastReceiver", "HUGOLUIZ Received broadcast: " + intent.toString());
-
-        //if (!AppStateUtils.isAppInForeground(context)) {
-        //    Log.d("MyBroadcastReceiver", "App in background. Ignoring intent.");
-        //    return;
-        //}
-
-        //Log.d("AppStateUtils", "HUGOLUIZ Importance: " + importance);
-        //Log.d("AppStateUtils", "HUGOLUIZ Top package: " + topActivity.getPackageName());
 
         if (IntentShim.broadcastCallbackContext != null && intent != null) {
             try {
