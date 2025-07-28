@@ -5,7 +5,6 @@ module.exports = function (context) {
     const manifestPath = path.join(context.opts.projectRoot, 'platforms', 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
     let manifest = fs.readFileSync(manifestPath, 'utf8');
 
-    // 1️⃣ Receiver block
     const receiverDeclaration = `
         <receiver android:exported="true" android:enabled="true" android:name="com.darryncampbell.cordova.plugin.intent.MyBroadcastReceiver">
              <intent-filter>
@@ -19,20 +18,21 @@ module.exports = function (context) {
         </receiver>
     `;
 
+    const batteryPermission = `<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />`;
+
+    if (!manifest.includes('android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS')) {
+        // Insert just after the <manifest ...> tag
+        manifest = manifest.replace(/<manifest[^>]*>/, match => `${match}\n    ${batteryPermission}`);
+        console.log('✅ Added android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS to AndroidManifest.xml');
+    } else {
+        console.log('ℹ️ Battery optimization permission already present in AndroidManifest.xml');
+    }
+
     if (!manifest.includes("MyBroadcastReceiver")) {
         manifest = manifest.replace(/<\/application>/, receiverDeclaration + "\n</application>");
         console.log('✅ MyBroadcastReceiver added to AndroidManifest.xml');
     } else {
         console.log('ℹ️ MyBroadcastReceiver already exists in AndroidManifest.xml');
-    }
-
-    // 1️⃣ Inject <uses-sdk> after <manifest> if not already present
-    const sdkBlock = `<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19" />`;
-    if (!manifest.includes('<uses-sdk')) {
-        manifest = manifest.replace(/<manifest[^>]*>/, match => `${match}\n    ${sdkBlock}`);
-        console.log('✅ Injected <uses-sdk> with targetSdkVersion 19 and minSdkVersion 8');
-    } else {
-        console.log('ℹ️ <uses-sdk> already present, skipping SDK injection');
     }
     
     // Queries block
