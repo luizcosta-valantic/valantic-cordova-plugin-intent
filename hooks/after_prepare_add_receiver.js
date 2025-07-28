@@ -37,16 +37,9 @@ module.exports = function (context) {
     
     // Queries block
     const queryBlock = `
-    <intent>
-        <action android:name="com.symbol.datawedge.api.RESULT_ACTION" />
-        <data android:scheme="*"/>
-    </intent>
-    <intent>
-        <action android:name="com.valantic.outsystems.SCAN_RESULT" />
-        <data android:scheme="*"/>
-    </intent>
+    <package android:name="com.symbol.datawedge" />
     `;
-/*
+
     if (manifest.includes('<queries>')) {
         // Add intent block just before </queries>
         manifest = manifest.replace('</queries>', queryBlock + '\n</queries>');
@@ -55,7 +48,7 @@ module.exports = function (context) {
         // No <queries> block found, create one before </manifest>
         manifest = manifest.replace('</manifest>', `<queries>${queryBlock}\n</queries>\n</manifest>`);
         console.log("📁 Created <queries> block and added custom intent queries.");
-    }*/
+    }
 
     // 2️⃣ Provider block
     const providerDeclaration = `
