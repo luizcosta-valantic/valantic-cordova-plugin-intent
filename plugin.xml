@@ -38,7 +38,6 @@
         <source-file src="src/android/CordovaPluginIntentFileProvider.java" target-dir="src/com/darryncampbell/plugin/intent" />
         <source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/com/darryncampbell/cordova/plugin/intent" />
 
-        <source-file src="src/android/AppStateUtils.java" target-dir="src/android/com/darryncampbell/cordova/plugin/intent" />
 
 
 		<resource-file src="src/android/res/xml/provider_paths.xml" target="res/xml/provider_paths.xml"/>
